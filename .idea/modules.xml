@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OddOrEvenGame.iml" filepath="$PROJECT_DIR$/OddOrEvenGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeSquae-Cocoa.iml" filepath="$PROJECT_DIR$/CodeSquae-Cocoa.iml" />
     </modules>
   </component>
 </project>

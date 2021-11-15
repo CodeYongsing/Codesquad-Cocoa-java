@@ -1,3 +1,5 @@
+package Week1.Mission1.src;
+
 import java.util.Scanner;
 
 public class Gugudan {
