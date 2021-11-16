@@ -10,10 +10,30 @@ public class Game {
     Challenger challenger = new Challenger("Challenger1",120);
     Player user = new Player();
 
+    int count = 0;
     int bettingMoney;
     public Game(){
 
     }
+    //다음라운드
+    public void nextRound(){
+
+        if (challenger.gameMoney == 0) {
+            System.out.println("Here comes a new challenger");
+            for (int i=2; i<9; i++){
+                System.out.println("Round"+i);
+                challenger = new Challenger("Challenger"+i, (int) (user.gameMoney * Math.pow(1.2,i)));
+                System.out.println("새로운 도전자 Challenger"+i+" 등장!! Challenger"+i+"의 자본금은 "+(int) (user.gameMoney * Math.pow(1.2,i))+"로 시작합니다.");
+                gamePlay();
+                count += i;
+                if(user.gameMoney == 0){
+                    break;
+                }
+            }
+            System.out.println("게임끝!!!"+count+"판 하셨습니다!!");
+        }
+    }
+
     //사용자 이름 등록
     public void enrollPlayer(){
         System.out.println("플레이어의 이름을 입력하세요: ");
@@ -65,19 +85,17 @@ public class Game {
     }
     //게임 이겼을 때
     public void gameWin(){
-
         user.gameMoney = user.gameMoney + this.bettingMoney;
         challenger.gameMoney = challenger.gameMoney - this.bettingMoney;
     }
     //게임 졌을 때
     public void gameLose(){
-
         user.gameMoney = user.gameMoney -  this.bettingMoney;
         challenger.gameMoney = challenger.gameMoney + this.bettingMoney;
     }
 
     public void gamePlay(){
-        do{
+        do{ betting();
             if (this.guessOddOrEven() == this.correctOddOrEven()){
                 System.out.println("정답입니다");
                 gameWin();
@@ -90,13 +108,14 @@ public class Game {
                 System.out.println("현재 "+user.playerName+"의 자본금은"+user.gameMoney+"입니다.");
                 System.out.println("현재 "+challenger.challengerName+"의 자본금은"+challenger.gameMoney+"입니다.");
             }
-        } while (user.gameMoney == 0 || challenger.gameMoney == 0);
+        } while (user.gameMoney != 0 && challenger.gameMoney != 0);
 
+        if(user.gameMoney == 0){
+            System.out.println(challenger.challengerName+"승리!!");
+        }else{
+            System.out.println(user.playerName+"승리!!");
+        }
     }
-
-
-
-
 
 
 }
