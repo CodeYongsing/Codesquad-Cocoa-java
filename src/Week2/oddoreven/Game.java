@@ -12,9 +12,11 @@ public class Game {
 
     int count = 0;
     int bettingMoney;
+
     public Game(){
 
     }
+
     //다음라운드
     public void nextRound(){
 
