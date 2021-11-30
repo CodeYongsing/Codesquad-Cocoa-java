@@ -15,7 +15,7 @@ public class RandomPick2 {
     }
     private static List<String> memberList() throws FileNotFoundException {
         List<String> cocoaList = new ArrayList<>();               //List 랑 ArrayList<>??
-        File f = new File("C:\\Users\\home\\Desktop\\CodeSquad\\Cocoa\\Week1\\Mission2\\Mission2-0\\src\\cocoamember");    //파일 가져오기
+        File f = new File("");    //파일 가져오기
         Scanner sc = new Scanner(f);                    //파일 읽기?
         while(sc.hasNext()) {                          // hasNext()는 boolean 타입 반환
             String name = sc.next();

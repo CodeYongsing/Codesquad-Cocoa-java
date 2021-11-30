@@ -5,5 +5,7 @@ public class GameMain {
         BaseBallGame game = new BaseBallGame();
         game.enrollPlayer();
         game.randomNumber();
+        game.guessNumber();
+        game.guessResult();
     }
 }
