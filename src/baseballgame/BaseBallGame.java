@@ -12,9 +12,6 @@ public class BaseBallGame {
     int strike = 0;
     int ball = 0;
 
-    public BaseBallGame () {
-
-    }
 
     //1. 플레이어 이름 입력받기 라이프는 10 , 게임안내
     public void enrollPlayer() {
@@ -29,6 +26,11 @@ public class BaseBallGame {
 
         for (int i = 0; i < ranNum.length; i++){
             ranNum[i] = (int)(Math.random()*10);
+            for (int j = 0; j < i; j++) {
+                if (ranNum[i] == ranNum[j]) {
+                    i--;
+                }
+            }
         }
         return ranNum;
     }
@@ -47,12 +49,13 @@ public class BaseBallGame {
                 }
             }
         }
-        System.out.println("입력하신 숫자는 "+guessNum[0]+","+guessNum[1]+","+guessNum[2]+" 입니다.");
+        System.out.println("입력하신 숫자는 "+guessNum[0]+guessNum[1]+guessNum[2]+" 입니다.");
     }
 
     //4. 숫자 맞으면 Ball , 숫자와 자리 다 맞으면 Strike, 숫자가 없으면 OUT 출력
     public void guessResult() {
-
+        ball = 0;
+        strike = 0;
         for (int i = 0; i < ranNum.length; i++) {
             for (int j = 0; j < guessNum.length; j++) {
                 if (ranNum[i] == guessNum[j] && i !=j){
@@ -65,18 +68,33 @@ public class BaseBallGame {
         }
 
         if (ball == 0 && strike == 0) {
-            System.out.println("OUT");
+            System.out.println("======= O U T =======");
         }else {
-            System.out.println(ball+"볼 "+strike+"스트라이크");
+            System.out.println("===== "+ball+"볼 "+strike+"스트라이크 =====");
+        }
+        if (strike == 3) {
+            System.out.println("******정답입니다!!******");
         }
     }
     //5. 게임진행 1턴지날때마다 라이프감소소
     public void gameGo() {
+        randomNumber();
+        do{
+            guessNumber();
+            guessResult();
+            if (strike == 3){
+                break;
+            }
+            player.gameLife--;
+            System.out.println(player.gameLife+"턴 남았습니다.");
+            System.out.println(" ");
+        } while(player.gameLife > 0);
+        System.out.println("정답은"+ranNum[0]+ranNum[1]+ranNum[2]+"입니다.");
+        gameOver();
 
     }
-    //6. 3Strie 면 게임종료, 라이프 0되면 게임종료
+    //6. 3Strike 면 게임종료, 라이프 0되면 게임종료
     public void gameOver() {
-
+        System.out.println("=========GAME OVER=========");
     }
-    //7. 게임 다시하기 or 종료
 }
